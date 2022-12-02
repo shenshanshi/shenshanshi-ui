@@ -66,6 +66,7 @@ export default {
   float: left;
   display: flex;
   align-items:center;
+  margin: 0 20px;
 }
 li{
 

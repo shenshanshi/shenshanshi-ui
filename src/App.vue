@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <HomeHeader></HomeHeader>
+    <div v-if="this.$route.meta.homeHead">
+      <HomeHeader></HomeHeader>
+    </div>
+
     <router-view></router-view>
   </div>
 </template>
@@ -18,5 +21,9 @@ export default {
 </script>
 
 <style>
+
+#app{
+  /*background-color: white;*/
+}
 
 </style>

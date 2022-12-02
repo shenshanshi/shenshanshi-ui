@@ -1,5 +1,5 @@
 <template>
-  <div class="header-wapper">
+  <div class="header-wapper" >
 
     <div class="header-left">
       <Logo></Logo>
@@ -27,7 +27,11 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "HomeHeader",
 
-  components: {Logo, HomeSearch, HomeCtegorize, AboutMe}
+  components: {Logo, HomeSearch, HomeCtegorize, AboutMe},
+
+  methods:{
+
+  }
 
 }
 </script>
@@ -42,7 +46,7 @@ export default {
   height: 80px;
   box-shadow: 2px 2px 10px #E5E5E5;
   background-color: white;
-  padding: 0px 30px;
+  padding: 0px 50px;
   position: sticky;
   top:0px;
 

@@ -1,21 +1,21 @@
 <template>
   <div class="animation-wapper">
 
+    <div class="pagination-wapper">
+      <Pagination></Pagination>
+    </div>
 
-    <div class="animation-type-wapper" v-for=" (type, index) in types" :key="index">
+    <div class="animation-type-wapper">
 
 
-      <div class="animation-type">
-
-        <strong>{{type}}</strong>
+      <div class="animation" v-for="i in 24" :key="i">
+        <HomeAnimation></HomeAnimation>
       </div>
 
-      <div class="animation" v-for="i in 12" :key="i">
-        <homeAnimation></homeAnimation>
-      </div>
+    </div>
 
-
-
+    <div class="pagination-wapper">
+      <Pagination></Pagination>
     </div>
 
 
@@ -26,17 +26,17 @@
 
 <script>
 
-import homeAnimation from "@/components/animation/HomeAnimation";
-
+import HomeAnimation from "@/components/animation/HomeAnimation";
+import Pagination from "@/components/pagination";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Animation",
-  components: {homeAnimation},
+  components: {HomeAnimation, Pagination},
 
   data(){
     return{
 
-      types:["每日推荐", "最近更新", "国产动漫", "动漫电影"]
+      types:["每日推荐", "最近更新"]
 
 
     }
@@ -48,37 +48,22 @@ export default {
 .animation-wapper{
   width: 1000px;
   margin: 0px auto;
-  /*background-color: wheat;*/
-}
-
-.animation-type-wapper::before{
-  content:"";
-  display: inline-block;
-  /*position: absolute;*/
-  top:30px;
-  left: 0px;
-  width: 100%;
-  height: 2px;
-  background-color: #E5041E;
-
+  margin-bottom: 100px;
 }
 
 
-.animation-type{
 
-  margin: 20px auto;
-  font-size: 20px;
-  color: #E5041E;
 
+.pagination-wapper{
+  margin: 20px 0;
 }
-
 
 .animation{
   display: inline-block;
   margin-bottom: 30px;
   margin-left: 20px;
 }
-.animation:nth-child(6n+2){
+.animation:nth-child(6n+1){
   margin-left: 0px;
 }
 

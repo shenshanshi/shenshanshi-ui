@@ -23,52 +23,88 @@ export default new VueRouter({
         {
             path:"/home",
             component:Home,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/",
-            redirect:"/home"
+            redirect:"/home",
+            meta:{
+                homeHead:true
+            }
         },
 
         {
             path:"/animation",
-            component:Animation
+            component:Animation,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/comic",
-            component:Comic
+            component:Comic,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/forum",
-            component:Forum
+            component:Forum,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/Game",
-            component:Game
+            component:Game,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/music",
-            component:Music
+            component:Music,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/novel",
-            component:Novel
+            component:Novel,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/periphery",
-            component:Periphery
+            component:Periphery,
+            meta:{
+                homeHead:true
+            }
         },
         {
             path:"/login",
-            component:Login
+            component:Login,
+            meta:{
+                // homeHead:true
+            }
         },
         {
             path:"/register",
-            component:Register
+            component:Register,
+            meta:{
+                // homeHead:true
+            }
         }        ,
         {
             path:"/search/:theme",
             component:Search,
-            name:"homeSearch"
+            name:"homeSearch",
+            meta:{
+                homeHead:true
+            }
         }
 
 

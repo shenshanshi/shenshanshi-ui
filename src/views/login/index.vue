@@ -6,9 +6,9 @@
     <div class="login-model">
 
       <p>登录</p>
-
+      <p class="error">{{error}}</p>
       <div class="accountName">
-        <input placeholder="用户名|邮箱" v-model="accountName"/>
+        <input placeholder="请输入用户名|邮箱" v-model="accountName"/>
       </div>
       <div class="password">
         <input type="password" placeholder="密码" v-model="password"/>
@@ -16,6 +16,10 @@
 
       <button @click="accountLogin">登录</button>
 
+      <div>
+        <span><router-link to="###">忘记密码</router-link></span>
+        <span><router-link to="/register">注册</router-link></span>
+      </div>
     </div>
 
   </div>
@@ -39,16 +43,24 @@ export default {
   data(){
     return{
       accountName:'',
-      password:''
+      password:'',
+      error: ''
     }
   },
   methods:{
-    accountLogin(){
+    async accountLogin(){
 
 
 
       // this.$store.dispatch("accountLogin", this.accountName, this.password)
-      this.$store.dispatch("accountLogin")
+       var promise = await this.$store.dispatch("accountLogin", {accountName: this.accountName, password: this.password});
+
+      if (promise === "ok"){
+         this.$router.push("/home")
+       }
+      else{
+        this.error = promise;
+      }
 
 
 
@@ -105,6 +117,16 @@ p{
   font-size: 40px;
   color: #666666;
 
+}
+
+.error{
+
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+  color: red;
 }
 
 input{
