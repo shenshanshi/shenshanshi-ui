@@ -16,9 +16,9 @@
 
       <button @click="accountLogin">登录</button>
 
-      <div>
-        <span><router-link to="###">忘记密码</router-link></span>
-        <span><router-link to="/register">注册</router-link></span>
+      <div class="register-wapper">
+        <span><router-link class="forgot-password" to="###">忘记密码</router-link></span>
+        <span><router-link class="register" to="/register">注册</router-link></span>
       </div>
     </div>
 
@@ -84,6 +84,7 @@ export default {
   position: absolute;
   bottom: 0;
   top: 0;
+
   /*background-image: url("../../assets/background/loginbackground.jpg");*/
   /*background-repeat: no-repeat;*/
   background-position: center;
@@ -111,7 +112,7 @@ export default {
 
 p{
 
-  width: 100%;
+
   text-align: center;
   margin-top: 20px;
   font-size: 40px;
@@ -121,11 +122,11 @@ p{
 
 .error{
 
-  width: 100%;
+
   height: 20px;
   text-align: center;
-  margin-top: 20px;
-  font-size: 12px;
+  /*margin-top: 20px;*/
+  font-size: 15px;
   color: red;
 }
 
@@ -135,15 +136,17 @@ input{
   line-height: 30px;
   font-size: 20px;
   border-radius: 5px;
-  border: 0px;
+  border: none;
+  outline: none;
   padding: 2px 5px;
-  margin: 20px auto;
-  margin-left: 175px;
+  margin: 20px 175px;
+
 }
 
 button{
   border: none;
-  background-color: #E5041E;
+  /*background-color: #E5041E;*/
+  background-color: #b3d4fc;
   width: 100px;
   height: 40px;
   font-size: 25px;
@@ -153,6 +156,28 @@ button{
   margin-top: 20px;
 
 }
+
+.register-wapper{
+  width: 100%;
+  margin-top: 20px;
+  /*box-sizing: border-box;*/
+  /*background-color: #b3d4fc;*/
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*align-content: center;*/
+  /*padding-left: 100px;*/
+}
+.forgot-password{
+  color: #b3d4fc;
+
+  margin-left: 200px;
+}
+.register{
+  float: right;
+  color: #b3d4fc;
+  margin-right: 200px;
+}
+
 
 
 </style>

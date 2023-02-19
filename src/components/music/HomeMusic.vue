@@ -24,8 +24,8 @@ export default {
   name: "HomeMusic",
   data(){
     return{
-      musicUrl:"http://localhost:2520/public/img/cover/huazhita.jpg",
-      musicName: "花之塔",
+      musicUrl:"http://121.36.210.108/static/shenshanshi/image/cover/huazhita.jpg",
+      musicName: "花の塔",
       musicAuthor:"さユり"
     }
   }

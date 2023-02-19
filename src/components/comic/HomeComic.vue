@@ -22,7 +22,7 @@ export default {
   name: "HomeComic",
   data(){
     return{
-      comicUrl:'http://localhost:2520/public/img/cover/maozhiming.png',
+      comicUrl:'http://121.36.210.108/static/shenshanshi/image/cover/maozhiming.png',
       comicName:'猫之茗',
 
 
@@ -38,6 +38,7 @@ export default {
   /*background-color: #85898E;*/
   width: 235px;
   /*height: 200px;*/
+  background-color: white;
 }
 
 .cover{

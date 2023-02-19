@@ -45,7 +45,7 @@ export default {
   margin-left: 0;
 }
 .pagination-wapper{
-  margin: 20px;
+  margin: 20px 0;
 }
 
 

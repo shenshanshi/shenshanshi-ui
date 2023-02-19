@@ -28,7 +28,7 @@ export default {
     return{
 
 
-      cover:"http://localhost:2520/public/img/cover/yaoyeluying.jpg",
+      cover:"http://121.36.210.108/static/shenshanshi/image/cover/yaoyeluying.jpg",
 
       animationName: "摇曳露营",
 
@@ -62,7 +62,7 @@ export default {
 .home-animation-wapper{
 
   width: 150px;
-
+  background-color: white;
 }
 
 

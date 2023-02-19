@@ -6,6 +6,7 @@
         <input type="text" maxlength="50"
                v-model="keyWord"
                :class="{'active': isActive}"
+               @keyup.enter="search"
                v-on:focus="focus = true"
                v-on:blur="focus = false" >
       </div>

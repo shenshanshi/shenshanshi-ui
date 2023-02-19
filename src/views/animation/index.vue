@@ -1,24 +1,27 @@
 <template>
   <div class="animation-wapper">
 
-    <div class="pagination-wapper">
-      <Pagination></Pagination>
-    </div>
-
-    <div class="animation-type-wapper">
-
-
-      <div class="animation" v-for="i in 24" :key="i">
-        <HomeAnimation></HomeAnimation>
+    <div v-if="!this.$route.meta.isInfo">
+      <div class="pagination-wapper">
+        <Pagination></Pagination>
       </div>
 
+      <div class="animation-type-wapper">
+
+        <div class="animation" v-for="i in 24" :key="i">
+          <HomeAnimation></HomeAnimation>
+        </div>
+
+      </div>
+
+      <div class="pagination-wapper">
+        <Pagination></Pagination>
+      </div>
     </div>
 
-    <div class="pagination-wapper">
-      <Pagination></Pagination>
-    </div>
 
 
+    <router-view></router-view>
 
 
   </div>

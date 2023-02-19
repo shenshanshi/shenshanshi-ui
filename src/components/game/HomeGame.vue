@@ -17,7 +17,7 @@ export default {
   name: "HomeGame",
   data(){
     return{
-      gamerl:'http://localhost:2520/public/img/cover/maozhiming.png',
+      gamerl:'http://121.36.210.108/static/shenshanshi/image/cover/maozhiming.png',
       gameName:'猫之茗',
       star: 4
 
@@ -32,8 +32,8 @@ export default {
   /*display: inline-block;*/
   width: 235px;
   /*background-color: #85898E;*/
-  background-color: #F1F1F1;
-
+  /*background-color: #F1F1F1;*/
+  background-color: white;
 }
 
 .cover{

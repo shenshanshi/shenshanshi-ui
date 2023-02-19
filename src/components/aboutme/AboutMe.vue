@@ -40,7 +40,7 @@ export default {
   data(){
     return{
       isLogin: true,
-      avatarUrl: "http://localhost:2520/public/img/avatar/shenshanshi.jpg",
+      avatarUrl: "http://121.36.210.108/static/shenshanshi/image/avatar/shenshanshi.jpg",
 
     }
   },

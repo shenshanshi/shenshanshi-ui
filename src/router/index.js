@@ -15,6 +15,10 @@ import Periphery from "@/views/periphery";
 import Login from "@/views/login";
 import Register from "@/views/register";
 import Search from "@/views/search";
+import AnimationInfo from "@/views/animation/info"
+import ForumRecommend from "@/components/forum/ForumRecommend";
+import ForumHot from "@/components/forum/ForumHot";
+import ForumFollow from "@/components/forum/ForumFollow";
 
 export default new VueRouter({
 
@@ -40,8 +44,23 @@ export default new VueRouter({
             component:Animation,
             meta:{
                 homeHead:true
-            }
+            },
+            children:[
+                {
+                    path:"play/:animation_id",
+                    component:AnimationInfo,
+                    meta:{
+                        isInfo: true,
+                        homeHead:true
+
+                    }
+                },
+
+            ]
+
+
         },
+
         {
             path:"/comic",
             component:Comic,
@@ -54,7 +73,37 @@ export default new VueRouter({
             component:Forum,
             meta:{
                 homeHead:true
-            }
+            },
+            children:[
+                {
+                    path: "",
+                    redirect:"recommend"
+                },
+                {
+                    name:"recommend",
+                    path: "recommend",
+                    component: ForumRecommend,
+                    meta:{
+                        homeHead:true
+                    }
+                },
+                {
+                    name:"follow",
+                    path: "follow",
+                    component: ForumFollow,
+                    meta:{
+                        homeHead:true
+                    }
+                },
+                {
+                    name:"hot",
+                    path: "hot",
+                    component: ForumHot,
+                    meta:{
+                        homeHead:true
+                    }
+                }
+            ]
         },
         {
             path:"/Game",
