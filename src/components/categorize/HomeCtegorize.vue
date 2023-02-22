@@ -22,32 +22,16 @@ export default {
     return{
       themes:[
         {
-          name:"首页",
-          theme:"home"
-        },
-        {
-          name:"动漫",
-          theme:"animation"
-        },
-        {
-          name:"漫画",
-          theme:"comic"
-        },{
-          name:"游戏",
-          theme:"game"
-        },{
-          name:"音乐",
-          theme:"music"
-        },{
-          name:"小说",
-          theme:"novel"
-        },{
           name:"论坛",
           theme:"forum"
         },{
           name:"周边",
           theme:"periphery"
-        }
+        },
+        {
+          name:"资源",
+          theme:"resources"
+        },
 
       ]
 

@@ -5,17 +5,14 @@ Vue.use(VueRouter);
 
 
 import Home from "@/views/home";
-import Animation from "@/views/animation";
-import Comic from "@/views/comic";
+
 import Forum from "@/views/forum";
-import Game from "@/views/game";
-import Music from "@/views/music";
-import Novel from "@/views/novel";
+
 import Periphery from "@/views/periphery";
 import Login from "@/views/login";
 import Register from "@/views/register";
 import Search from "@/views/search";
-import AnimationInfo from "@/views/animation/info"
+
 import ForumRecommend from "@/components/forum/ForumRecommend";
 import ForumHot from "@/components/forum/ForumHot";
 import ForumFollow from "@/components/forum/ForumFollow";
@@ -34,36 +31,6 @@ export default new VueRouter({
         {
             path:"/",
             redirect:"/home",
-            meta:{
-                homeHead:true
-            }
-        },
-
-        {
-            path:"/animation",
-            component:Animation,
-            meta:{
-                homeHead:true
-            },
-            children:[
-                {
-                    path:"play/:animation_id",
-                    component:AnimationInfo,
-                    meta:{
-                        isInfo: true,
-                        homeHead:true
-
-                    }
-                },
-
-            ]
-
-
-        },
-
-        {
-            path:"/comic",
-            component:Comic,
             meta:{
                 homeHead:true
             }
@@ -106,22 +73,8 @@ export default new VueRouter({
             ]
         },
         {
-            path:"/Game",
-            component:Game,
-            meta:{
-                homeHead:true
-            }
-        },
-        {
-            path:"/music",
-            component:Music,
-            meta:{
-                homeHead:true
-            }
-        },
-        {
-            path:"/novel",
-            component:Novel,
+            path:"/resources",
+            component:()=>import('@/views/resources/index.vue'),
             meta:{
                 homeHead:true
             }
