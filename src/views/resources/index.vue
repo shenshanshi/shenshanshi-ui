@@ -27,9 +27,8 @@
       </div>
 
     </div>
-    <div>
-      <Pagination></Pagination>
-<!--      111-->
+    <div style="height: 50px;">
+      <pagination :pageNo="searchParams.pageNo" :pageSize="searchParams.pageSize" :total="total" :continue="5" @getPageNo="getPageNo"/>
     </div>
   </div>
 
@@ -38,15 +37,26 @@
 </template>
 
 <script>
-// import pagination from "@/components/pagination/index.vue";
-// import Pagination from "@/components/pagination/index.vue";
+import pagination from "@/components/pagination/index.vue";
+// import Pagination from '@/components/pagination/index.vue';
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "resources",
+  components:{
+    pagination
+  },
 
   data() {
     return{
+      total:50,
+      searchParams: {
+            // 分页的第几页
+            pageNo: 1,
+        // 每页的条数
+        pageSize: 10,
+
+  },
       feileis:[
         {
           id:1,
@@ -63,9 +73,18 @@ export default {
       ]
     }
   },
-  components:{
-    // pagination
+
+  methods:{
+    getPageNo(pageNo){
+      this.searchParams.pageNo = pageNo
+      // this.getData()
+    },
+    // getData(){
+    //
+    // }
+
   }
+
 
 }
 </script>

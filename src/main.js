@@ -3,9 +3,9 @@ import App from './App.vue'
 
 import router from "@/router";
 import store from "@/store";
-import Pagination from "@/components/pagination";
-Vue.config.productionTip = false
-Vue.component(Pagination.name,Pagination)
+// import agination from '@/components/pagination'
+Vue.config.productionTip = false;
+// Vue.component(Pagination.name,Pagination)
 
 new Vue({
   render: h => h(App),
