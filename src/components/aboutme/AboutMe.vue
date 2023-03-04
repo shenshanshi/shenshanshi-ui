@@ -1,19 +1,25 @@
 <template>
   <div class="about-me-wapper">
 
-
+    <!--    头像    -->
     <div  class="avatar-wapper">
-      <router-link v-if="isLogin" to="/space">
-        <img :src="avatarUrl"  class="avatar" >
+
+      <!--      已登录   -->
+      <router-link v-if="token" to="/space">
+        <img :src="account.avatar"  class="avatar" >
       </router-link>
-      <router-link v-else to="/login" target="_blank">
+
+      <!--      未登录   -->
+      <!--      target="_blank"-->
+      <router-link v-else to="/login" >
         <img src="@/assets/icon/login.svg"  class="avatar">
       </router-link>
 
     </div>
 
 
-    <div class="about-me" v-if="isLogin">
+    <!--    已登录菜单栏-->
+    <div class="about-me" v-if="token">
 
       <router-link class="about-me-li" to="/space" target="_blank">
         <button >个人中心</button>
@@ -28,27 +34,60 @@
         <button >退出登录</button>
       </div>
 
+
     </div>
 
   </div>
 </template>
 
 <script>
+import {logout} from "@/api/oauth/oauth";
+import {getAccount} from "@/api/account/account";
+
+
 export default {
   name: "AboutMe",
 
   data(){
     return{
-      isLogin: true,
+      token: localStorage.getItem("TOKEN"),
+      account:{},
       avatarUrl: "http://121.36.210.108/static/shenshanshi/image/avatar/shenshanshi.jpg",
-
     }
   },
   methods:{
-    logout(){
-      this.isLogin = false;
+
+    // 退出登录
+    async logout(){
+      let result = await logout();
+      localStorage.removeItem("TOKEN");
+      this.token = localStorage.getItem("TOKEN");
+      if (result.code !== 200){
+        console.log("退出登录失败");
+      }
+    },
+
+    async getAccount(){
+      let result = await getAccount()
+      if (result.code === 200){
+        this.account = result.data
+      }else{
+        localStorage.removeItem("TOKEN")
+        this.token = ""
+      }
+      // console.log(this.account);
     }
+
+
+
+
+  },
+  mounted() {
+    this.getAccount()
+
+
   }
+
 }
 </script>
 
@@ -100,7 +139,7 @@ export default {
 
   display: none;
   position: absolute;
-  /*background-color: white;*/
+  background-color: white;
   border-radius: 10px;
   text-align: center;
   width: 130px;
@@ -116,7 +155,6 @@ export default {
 .about-me-li>button:hover{
   background-color: #E3E5E7;
 }
-
 
 
 

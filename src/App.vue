@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div v-if="this.$route.meta.homeHead">
+    <div v-if="this.$route.meta.homeHead" >
       <HomeHeader></HomeHeader>
     </div>
 
@@ -25,5 +25,6 @@ export default {
 #app{
   /*background-color: white;*/
 }
+
 
 </style>

@@ -2,14 +2,21 @@
   <div class="forum-wapper">
 
 
+
+
     <div class="forum-left-wapper">
 
       <div class="forum-left-top-wapper">
         <div class="forum-menu-list">
-          <div v-for="meun in forumMenus" :key="meun.name" class="forum-menu-item">
-            <router-link active-class="meun-active" :to="{name: meun.urlName}" >
-              <p class="forum-menu-name">{{meun.name}}</p>
-            </router-link>
+          <div v-for="meun in fenleis"
+               :key="meun.key"
+               class="forum-menu-item"
+               :class="{'forum-menu-active' : xuanze === meun.key}"
+               v-on:click="onClickXuanzhe(meun.key)">
+
+            <p>{{meun.name}}</p>
+
+
           </div>
         </div>
 
@@ -17,13 +24,18 @@
       </div>
 
       <div class="forum-left-bottom-wapper">
-        <router-view></router-view>
+
+        <div v-for="post in posts" :key="post.postId" class="forum-menu-item-wapper">
+
+          <ForumItem :post="post"></ForumItem>
+
+        </div>
       </div>
 
 
     </div>
 
-    <div class="forum-right-wapper" :style="{top: top + 'px'}" >
+    <div class="forum-right-wapper"  >
 
       <CreationCenter></CreationCenter>
       <RecommendFollow></RecommendFollow>
@@ -37,40 +49,56 @@
 <script>
 import CreationCenter from "@/components/creationcenter/CreationCenter";
 import RecommendFollow from "@/components/recommendfollow/RecommendFollow";
+import ForumItem from "@/components/forum/ForumItem";
+import {getpost} from "@/api/forum/post";
+
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Forum",
-  components:{CreationCenter, RecommendFollow},
+  components:{CreationCenter, RecommendFollow, ForumItem},
   data(){
     return{
-      top: 0,
-      forumMenus:[
+
+      fenleis : [
         {
-          name:"推荐",
-          urlName:"recommend",
-        },
-        {
-          name:"热门",
-          urlName:"hot",
-        },
-        {
-          name:"关注",
-          urlName:"follow",
-        },
-      ]
+          name : "推荐",
+          key: "recommend"
+        } ,{
+          name : "热门",
+          key: "hot"
+        } ,{
+          name : "关注",
+          key: "follow"
+        } ,
+      ],
+      xuanze: "recommend",
+
+      posts:[]
     }
 
 
   },
- beforeCreate() {
-    // var clientHeight = window.innerHeight;
 
+  computed: {
 
-   // var height = document.getElementsByClassName("forum-right-wapper").scrollHeight;
+  },
+  methods:{
 
-   // console.log(clientHeight);
-   // console.log(height);
- }
+    async onClickXuanzhe(key){
+      this.xuanze = key
+      ///调用后端接口
+      let result = await getpost(key)
+      if (result.code === 200){
+        this.posts = result.data
+      }
+
+    }
+  },
+  mounted() {
+
+    this.onClickXuanzhe(this.xuanze)
+  }
 }
 </script>
 
@@ -107,6 +135,7 @@ a{
 
   /*background-color: #b3d4fc;*/
   position: sticky;
+  top: 0;
   /*top: -100px;*/
   /*bottom: 80px;*/
   /*bottom: -80px;*/
@@ -152,34 +181,24 @@ a{
 }
 
 .forum-menu-item{
+
   display: inline-block;
   width: 80px;
   height: 20px;
+  margin-right: 10px;
+  text-align: center;
+  font-size: 17px;
+  cursor: pointer;
 }
 
-
-.forum-menu-name:hover{
-  background-color: #E5041E;
-  color: white;
-
-}
-.meun-active>.forum-menu-name{
+.forum-menu-active{
   color: #E5041E;
 }
 
 
-.forum-menu-name{
 
-  margin: 0 4px;
-  padding: 5px;
-  height: 20px;
-  text-align: center;
-  font-size: 14px;
-  border-radius: 15px;
-  color: #222222;
-  font-weight: 600;
 
-}
+
 
 
 

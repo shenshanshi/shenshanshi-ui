@@ -7,6 +7,7 @@ const state = {
 };
 //mutations:修改state的唯一手段
 const mutations = {
+
     SETTOKEN(state, token){
         state.token = token
         setToken(token)
@@ -38,8 +39,10 @@ const actions = {
     },
 
     async accountLogout({commit}){
+
         let result = await logout();
         commit("REMOVETOKEN");
+
         if (result.code !== 200){
             console.log("退出登录失败！");
         }

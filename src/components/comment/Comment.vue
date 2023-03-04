@@ -4,14 +4,16 @@
 
 
     <div class="sort-wapper">
-      <p class="sort-item" :class="{'sort-active': chose}" @click="chose=true">按热度排行</p>
-      <p class="sort-item" :class="{'sort-active': !chose}" @click="chose = false">按时间排行</p>
+      <p class="sort-item" :class="{'sort-active': chose}" v-on:click="hotSort">按热度排行</p>
+      <p class="sort-item" :class="{'sort-active': !chose}" v-on:click="timeSore">按时间排行</p>
 
     </div>
 
-    <div >
-      <CommentItem></CommentItem>
-      <CommentItem></CommentItem>
+    <div class="review-wapper">
+      <div v-for="review in reviews" :key="review.reviewId">
+        <CommentItem :review="review"></CommentItem>
+      </div>
+
     </div>
 
 
@@ -25,15 +27,49 @@
 <script>
 
 import CommentItem from "@/components/comment/CommentItem";
+import {getReviewByPostId} from "@/api/forum/review";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Comment",
+  props:["postId"],
   data(){
     return{
       chose:true,
+      reviews:[],
     }
   },
   components:{CommentItem},
+
+  methods:{
+
+    async getReview(){
+      let result = await getReviewByPostId(this.postId)
+      if (result.code === 200){
+        this.reviews = result.data
+        this.hotSort()
+        this.chose = true
+      }
+    },
+
+
+    hotSort(){
+      this.reviews = this.reviews.sort((a, b) => {a.like > b.like});
+      this.chose = true
+    },
+
+    timeSore(){
+      this.reviews = this.reviews.sort((a, b) => {a.createTime < b.createTime});
+      this.chose = false
+
+
+    }
+
+
+  },
+  mounted() {
+    this.getReview()
+  }
 
 }
 </script>

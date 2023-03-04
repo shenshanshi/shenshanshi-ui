@@ -2,12 +2,12 @@
   <div class="follow-item-wapper">
 
     <div class="follow-item-left-wapper">
-      <img  src="http://121.36.210.108/static/shenshanshi/image/avatar/shenshanshi.jpg" class="follow-avatar">
+      <img  :src="account.avatar" class="follow-avatar">
     </div>
     <div class="follow-item-center-wapper">
 
-      <p class="follow-name">梦太远、你可会来？</p>
-      <p class="follow-fenlei">999粉丝&nbsp;.&nbsp;20篇文章</p>
+      <p class="follow-name">{{account.accountName}}</p>
+      <p class="follow-fenlei">{{fensi}}粉丝&nbsp;.&nbsp;{{wenzhang}}篇文章</p>
     </div>
     <div class="follow-item-right-wapper">
       <router-link to="###">
@@ -22,8 +22,40 @@
 </template>
 
 <script>
+import {getAccountById} from "@/api/account/account";
+
 export default {
-  name: "FollowItem"
+  name: "FollowItem",
+  props:['accountId'],
+
+  data(){
+    return{
+
+      account:{},
+      fensi: this.random(2, 10),
+      wenzhang: this.random(1, 5),
+
+
+    }
+  },
+  methods:{
+
+    async getAccount(){
+      let result = await getAccountById(this.accountId)
+      if (result.code === 200){
+        this.account = result.data
+      }
+    },
+    random(start,stop){
+      return parseInt(Math.random()*(stop-start)+start);
+    }
+
+  },
+  mounted() {
+    this.getAccount()
+  }
+
+
 }
 </script>
 

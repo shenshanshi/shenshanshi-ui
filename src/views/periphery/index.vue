@@ -1,6 +1,10 @@
 <template>
-  <div>
-    periphery
+  <div class="periphery-wapper">
+
+
+
+
+
   </div>
 </template>
 

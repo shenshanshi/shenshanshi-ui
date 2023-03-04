@@ -1,18 +1,21 @@
 <template>
-  <div class="header-wapper" >
+  <div class="xxxxxxx">
+    <div class="header-wapper" >
 
-    <div class="header-left">
-      <Logo></Logo>
+      <div class="header-left">
+        <Logo></Logo>
+      </div>
 
-    </div>
+      <div class="header-right">
+        <HomeSearch></HomeSearch>
+        <HomeCtegorize></HomeCtegorize>
+        <AboutMe></AboutMe>
+      </div>
 
-    <div class="header-right">
-      <HomeSearch></HomeSearch>
-      <HomeCtegorize></HomeCtegorize>
-      <AboutMe></AboutMe>
     </div>
 
   </div>
+
 </template>
 
 <script>
@@ -39,16 +42,26 @@ export default {
 <style scoped>
 
 
+.xxxxxxx{
+
+
+
+  width: 100%;
+  height: 80px;
+  min-width: 1000px;
+  background-color: white;
+  box-shadow: 2px 2px 10px #E5E5E5;
+  position: relative;
+  top:0;
+  z-index: 99999;
+
+}
 
 .header-wapper{
 
-  min-width: 1440px;
-  height: 80px;
-  box-shadow: 2px 2px 10px #E5E5E5;
-  background-color: white;
-  padding: 0px 50px;
-  position: sticky;
-  top:0px;
+  width: 1000px;
+  height: 100%;
+  margin: 0 auto;
 
 }
 .header-left{

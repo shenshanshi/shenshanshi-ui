@@ -6,11 +6,8 @@
 
 
     <div>
-
-
-      <div class="follow-iten" v-for="i in 5" :key="i">
-        <FollowItem ></FollowItem>
-
+      <div class="follow-iten" v-for="(item, index) in follows" :key="index">
+        <FollowItem :account-id="item.beFollow"></FollowItem>
       </div>
     </div>
 
@@ -21,9 +18,34 @@
 
 <script>
 import FollowItem from "@/components/forum/FollowItem";
+import {getRecommendAccount} from "@/api/account/follow";
 export default {
   name: "RecommendFollow",
-  components:{FollowItem}
+  components:{FollowItem},
+  data(){
+    return{
+      follows:[]
+    }
+  },
+  methods:{
+    async getFollow(){
+
+      let result = await getRecommendAccount()
+      // console.log(result);
+      if (result.code === 200){
+        // alert(200)
+        this.follows = result.data
+        console.log(this.follows);
+      }else{
+        // alert(500)
+      }
+    }
+  },
+
+  mounted() {
+    this.getFollow()
+  }
+
 
 }
 </script>

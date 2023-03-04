@@ -1,14 +1,10 @@
 <template>
-  <div>
-    follow
-  </div>
+
 </template>
 
 <script>
-
 export default {
-  name: "ForumFollow",
-
+  name: "periphery"
 }
 </script>
 

@@ -31,8 +31,7 @@
 <script>
 
 
-
-
+import {login} from "@/api/oauth/oauth";
 
 
 export default {
@@ -48,21 +47,20 @@ export default {
     }
   },
   methods:{
+
+
+
     async accountLogin(){
-
-
-
-      // this.$store.dispatch("accountLogin", this.accountName, this.password)
-       var promise = await this.$store.dispatch("accountLogin", {accountName: this.accountName, password: this.password});
-
-      if (promise === "ok"){
-         this.$router.push("/home")
-       }
-      else{
-        this.error = promise;
+      let result = await login(this.accountName, this.password);
+      if (result.code === 200){
+        localStorage.setItem("TOKEN", result.token);
+        this.$router.push("/");
+      }else if (result.code === 500){
+        this.error = result.msg;
+      }else{
+        this.error = "登录失败";
+        localStorage.removeItem("TOKEN");
       }
-
-
 
 
     }

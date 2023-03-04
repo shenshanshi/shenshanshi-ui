@@ -15,7 +15,7 @@
     <div class="wapper-xiangqing"  v-for="(i, index) in 15" :key="index">
       <div class="left-image">
         <div >
-         <img style="width: 290px;height: 180px;border-radius: 5px" src="@/assets/bj.jpeg">
+         <img style="width: 290px;height: 180px;border-radius: 5px" src="https://www.bilibili.com/video/BV1Sr4y167tV/?spm_id_from=333.999.0.0">
         </div>
         <div>
           <div>标题</div>

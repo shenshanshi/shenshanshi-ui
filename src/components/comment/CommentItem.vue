@@ -10,22 +10,29 @@
       <div class="cengzhu-wapper">
         <div>
           <p class="username">{{username}}</p>
-          <p class="neirong">{{neirong}}</p>
+          <p class="neirong">{{review.reviewContent}}</p>
         </div>
 
         <div class="cengzhu-botton-wapper">
           <div>
-            <p>{{new Date().toLocaleString()}}</p>
+            <p>{{review.createTime}}</p>
           </div>
           <div>
-            <p><img class="cengzhu-botton-icon" src="../../assets/icon/dianzan.svg" alt=""></p>
-            <p>1</p>
+            <p v-on:click="onLike(review.reviewId)">
+              <img class="cengzhu-botton-icon" src="@/assets/icon/dianzan.svg" alt="" v-if="isLike !== 1">
+              <img class="cengzhu-botton-icon" src="@/assets/icon/dianzan_active.svg" alt="" v-else>
+
+            </p>
+            <p>{{review.like}}</p>
           </div>
 
 
           <div>
-            <p><img class="cengzhu-botton-icon" src="../../assets/icon/cai.svg" alt=""></p>
-            <p>1</p>
+            <p v-on:click="onNotLike(review.reviewId)">
+              <img class="cengzhu-botton-icon" src="@/assets/icon/cai.svg" alt="" v-if="isLike !== -1">
+              <img class="cengzhu-botton-icon" src="@/assets/icon/cai_active.svg" alt="" v-else >
+            </p>
+            <p>{{review.notlike}}</p>
           </div>
 
           <div>
@@ -56,10 +63,16 @@
 </template>
 
 <script>
+
+import {notlikeReviewByReviewId, likeReviewByReviewId} from "@/api/forum/review";
+
 export default {
   name: "CommentItem",
+  props:["review"],
   data(){
     return{
+
+      isLike: 0,
 
       username:"梦太远、你可会来？",
       neirong:"如果你觉得 ES 的 JavaAPI 中的高级文档查询很难用，不妨稍微封装一下，把繁琐的过程封装了一下更能凸显本质。\n" +
@@ -68,6 +81,66 @@ export default {
       avatarUrl: "http://121.36.210.108/static/shenshanshi/image/avatar/shenshanshi.jpg",
 
     }
+  },
+  methods:{
+
+    async onLike(reviewId){
+        if (this.isLike !== 1){
+          //++
+          let result = await likeReviewByReviewId(reviewId, 1);
+          if (result.code === 200){
+            // eslint-disable-next-line vue/no-mutating-props
+            this.review.like = result.data
+
+          }
+          if (this.isLike === -1){
+            let result1 = await notlikeReviewByReviewId(reviewId, -1);
+
+
+            if (result1.code === 200){
+              // eslint-disable-next-line vue/no-mutating-props
+              this.review.notlike = result1.data
+
+
+            }
+          }
+
+        }
+      this.isLike = 1
+
+
+    },
+
+    async onNotLike(reviewId){
+      if (this.isLike !== -1){
+        //++
+        let result = await notlikeReviewByReviewId(reviewId, 1);
+        if (result.code === 200){
+          // eslint-disable-next-line vue/no-mutating-props
+          this.review.notlike = result.data
+
+
+        }
+        if (this.isLike === 1){
+          let result1 = await likeReviewByReviewId(reviewId, -1);
+
+          if (result1.code === 200){
+
+            // eslint-disable-next-line vue/no-mutating-props
+            this.review.like = result1.data
+
+
+
+          }
+        }
+
+      }
+      this.isLike = -1
+
+
+    }
+
+
   }
 }
 </script>
@@ -75,6 +148,7 @@ export default {
 <style scoped>
 
 .comment-item-wapper{
+  /*margin-top: 10px;*/
   display: flex;
 }
 
@@ -119,9 +193,11 @@ export default {
   color: #222;
   /*font-weight: 400;*/
   font-size: 13px;
+  margin-top: 10px;
 }
 
 .cengzhu-botton-wapper{
+  margin-top: 5px;
   display: flex;
   color: #9499A0;
 }
