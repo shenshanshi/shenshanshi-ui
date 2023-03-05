@@ -124,7 +124,7 @@ export default {
   data(){
     return{
 
-      chose: true,
+      chose: false,
       // 手办 公式设定集 官方漫画 景品
       leixings: ["文创文具", "服饰鞋包", "日用品", "3c数码", "耳机", "键盘鼠标", "毛绒玩偶", "卡牌", "比例手办", "景品"],
       saixuans: ["综合", "销量", "价格"],
