@@ -195,6 +195,11 @@ a{
   color: #E5041E;
 }
 
+.forum-menu-item-wapper{
+  /*margin-bottom: 30px;*/
+  box-shadow: 2px 2px 5px #E5E5E5;
+}
+
 
 
 

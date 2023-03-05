@@ -72,6 +72,7 @@ a:hover{
   padding: 0 14px;
   background-color: white;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px #E5E5E5;
 
 }
 

@@ -12,6 +12,7 @@ import Periphery from "@/views/periphery";
 import Login from "@/views/login";
 import Register from "@/views/register";
 import Search from "@/views/search";
+import Resources from "@/views/resources";
 
 
 export default new VueRouter({
@@ -46,6 +47,7 @@ export default new VueRouter({
             meta:{
                 homeHead:true
             }
+
         },
         {
             path:"/login",

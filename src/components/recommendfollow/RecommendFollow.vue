@@ -60,6 +60,7 @@ export default {
   background-color: white;
   margin-top: 10px;
   border-radius: 5px;
+  box-shadow: 2px 2px 5px #E5E5E5;
 
 }
 
