@@ -31,7 +31,7 @@ export default new VueRouter({
             component:Forum,
             meta:{
                 homeHead:true
-            }
+            },
 
         },
         {

@@ -102,7 +102,7 @@
         <Display></Display>
       </div>
       <div v-else>
-        <PeripheryItem></PeripheryItem>
+        <PeripheryItem ref="PeripheryItem" :leixing="leixings[leixingindex]" :saixuan="saixuans[saixuanindex]"></PeripheryItem>
       </div>
 
 
@@ -115,7 +115,9 @@
 <script>
 
 import Display from "@/views/periphery/display";
-import PeripheryItem from "@/views/periphery/peripheryitem";
+import PeripheryItem from "@/views/periphery/periphery";
+
+
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -126,14 +128,15 @@ export default {
 
       chose: false,
       // 手办 公式设定集 官方漫画 景品
-      leixings: ["文创文具", "服饰鞋包", "日用品", "3c数码", "耳机", "键盘鼠标", "毛绒玩偶", "卡牌", "比例手办", "景品"],
+      leixings: ["全部", "文创文具", "服饰鞋包", "日用品", "3c数码", "耳机", "键盘鼠标", "毛绒玩偶", "卡牌", "比例手办", "景品"],
       saixuans: ["综合", "销量", "价格"],
       leixingindex: 0,
       saixuanindex: 0,
 
       citys:["全国", "成都", "北京", "上海", "武汉", "沈阳", "深圳", "重庆", "厦门" ],
       displayleixings:["全部类型", "演出", "展览", "本地生活" ],
-      times:["全部时间", "本周", "本月" ]
+      times:["全部时间", "本周", "本月" ],
+
 
     }
   },
@@ -141,22 +144,36 @@ export default {
 
     choseLeiXing(index){
       this.leixingindex = index
+      this.getGoots()
     },
     choseSaiXuan(index){
       this.saixuanindex = index
+      this.getGoots()
+
     },
 
+    getGoots(){
+      this.$refs.PeripheryItem.getGoos(this.leixings[this.leixingindex], this.saixuans[this.saixuanindex])
+    }
+
+
+
+  },
+  mounted() {
+
+
   }
+
+
 }
 </script>
 
 <style scoped>
 .periphery-wapper{
-  /*background-color: white;*/
+
   width: 1000px;
   margin: 10px auto;
-  /*text-align: center;*/
-  /*overflow: hidden;*/
+
 
 }
 
@@ -164,7 +181,6 @@ export default {
   background-color: white;
   box-shadow: 2px 2px 5px #E5E5E5;
   border-radius: 5px;
-
 }
 
 a{
